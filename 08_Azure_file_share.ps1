@@ -41,7 +41,7 @@ Set-AzStorageFileContent `
    -Source "C:\Temp\SampleUpload.txt" `
    -Path "myDirectory\SampleUpload.txt"
 
-Get-AzStorageFile -Context $storageAcct.Context -ShareName "myshare" -Path "myDirectory" | Get-AzureStorageFile
+Get-AzStorageFile -Context $storageAcct.Context -ShareName "myshare" -Path "myDirectory" | Get-AzStorageFile
 
 # Delete an existing file by the same name as SampleDownload.txt, if it exists because you've run this example before
 Remove-Item `
