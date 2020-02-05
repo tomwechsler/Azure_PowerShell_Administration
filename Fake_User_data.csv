@@ -1,0 +1,4 @@
+﻿Title,GivenName,Surname,MiddleInitial,StreetAddress,City,State,StateFull,ZipCode,Country,CountryFull,Username,TelephoneNumber,TelephoneCountryCode,Occupation,Department
+Hr.,Daniel,Pellegrino,L,Steinerstrasse 44,Steinen,SZ,Schwyz,6422,CH,Schweiz,DaPellegrino,714-588-9739,41,Associate,Accounting
+Fr.,Patricia,Olmstead,R,Hausberg 1,Olten,SO,Solothurn,4600,CH,Schweiz,PaOlmstead,586-883-1008,41,Associate,Finance
+Fr.,June,Long,R,Mausweg 22,Olten,SO,Solothurn,4600,CH,Schweiz,JuLong,512-301-9440,1,Associate,IT
