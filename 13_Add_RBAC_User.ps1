@@ -27,7 +27,7 @@ Get-AzRoleAssignment -ResourceGroupName tw-web-rg | FL DisplayName, RoleDefiniti
 
 Get-AzSubscription
 
-Get-AzRoleAssignment -Scope /subscriptions/b7491397-4f98-462b-8a2f-9942f9ea9ef7
+Get-AzRoleAssignment -Scope /subscriptions/<ihre Subscription ID>
 
 Get-AzRoleAssignment -IncludeClassicAdministrators
 
