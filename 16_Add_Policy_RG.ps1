@@ -28,4 +28,4 @@ Get-AzPolicyState -ResourceGroupName $rg.ResourceGroupName -PolicyAssignmentName
 Get-AzSubscription
 
 # Removes the policy assignment
-Remove-AzPolicyAssignment -Name 'audit-vm-manageddisks' -Scope '/subscriptions/b8e8ea82-7d28-4438-b50e-fbcf18d04346/resourceGroups/tw-web-rg'
+Remove-AzPolicyAssignment -Name 'audit-vm-manageddisks' -Scope '/subscriptions/<ihre Subscription ID>/resourceGroups/tw-web-rg'
