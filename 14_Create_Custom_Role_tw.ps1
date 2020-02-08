@@ -20,6 +20,6 @@ $customrole.Actions.Add("Microsoft.Authorization/*/read")
 $customrole.Actions.Add("Microsoft.Resources/subscriptions/resourceGroups/read")
 $customrole.Actions.Add("Microsoft.Insights/alertRules/*")
 $customrole.AssignableScopes.Clear()
-$customrole.AssignableScopes.Add("/subscriptions/b8e8ea82-7d28-4438-b50e-fbcf18d04346")
+$customrole.AssignableScopes.Add("/subscriptions/<ihre Subscription ID>")
  
 New-AzRoleDefinition -Role $customrole 
