@@ -51,7 +51,7 @@ $nic = New-AzNetworkInterface -Name myNic -ResourceGroupName $resourceGroup -Loc
 
 # Create a virtual machine configuration
 $vmConfig = New-AzVMConfig -VMName $vmName -VMSize Standard_D2s_v3 | `
-Set-AzOperatingSystem -Windows -ComputerName $vmName -Credential $cred | `
+Set-AzVMOperatingSystem -Windows -ComputerName $vmName -Credential $cred | `
 Set-AzVMSourceImage -PublisherName MicrosoftWindowsServer -Offer WindowsServer -Skus 2016-Datacenter -Version latest | `
 Add-AzVMNetworkInterface -Id $nic.Id
 
