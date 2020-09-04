@@ -19,6 +19,7 @@ Connect-AzAccount
 
 #Select the correct subscription
 Get-AzSubscription -SubscriptionName "MSDN Platforms" | Select-AzSubscription
+Get-AzContext
 
 #Create a new resource group
 New-AzResourceGroup -Name $resourceGroup -Location $location
