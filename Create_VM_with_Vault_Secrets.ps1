@@ -1,4 +1,4 @@
-﻿Set-Location c:\
+Set-Location c:\
 Clear-Host
 
 Install-Module -Name Az -Force -AllowClobber -Verbose
@@ -18,6 +18,8 @@ Get-AzContext
 #Create a resource group
 New-AzResourceGroup -Name $resourceGroup -Location $location
 
+#region Azure Key Vault
+
 #Create a Key Vault
 New-AzKeyVault -Name 'tw-vault2020' -ResourceGroupName $resourceGroup -Location $location
 
@@ -32,6 +34,8 @@ $secret = Set-AzKeyVaultSecret -VaultName tw-vault2020 -Name 'SysadminSecret' -S
 Get-AzKeyVaultSecret -VaultName 'tw-vault2020' -Name 'SysadminSecret' | Get-Member
 
 (Get-AzKeyVaultSecret -VaultName 'tw-vault2020' -Name 'SysadminSecret').SecretValueText
+
+#endregion
 
 #Retreive sysadmin password from KeyVault
 $pass = (Get-AzKeyVaultSecret -VaultName tw-vault2020 -Name SysadminSecret).SecretValue
