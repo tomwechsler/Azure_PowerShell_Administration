@@ -52,23 +52,27 @@ Add-AzVirtualNetworkPeering `
   -VirtualNetwork $virtualNetwork1 `
   -RemoteVirtualNetworkId $virtualNetwork2.Id
 
-Add-AzVirtualNetworkPeering `
-  -Name myVirtualNetwork2-myVirtualNetwork1 `
-  -VirtualNetwork $virtualNetwork2 `
-  -RemoteVirtualNetworkId $virtualNetwork1.Id
-
-=> PeeringState is Initiated
-
 #Confirm that the peering state
 Get-AzVirtualNetworkPeering `
   -ResourceGroupName myResourceGroup `
   -VirtualNetworkName myVirtualNetwork1 `
   | Select PeeringState
 
+=> PeeringState is Initiated
+
+#Create a peering, the following example peers myVirtualNetwork2 to myVirtualNetwork1
+Add-AzVirtualNetworkPeering `
+  -Name myVirtualNetwork2-myVirtualNetwork1 `
+  -VirtualNetwork $virtualNetwork2 `
+  -RemoteVirtualNetworkId $virtualNetwork1.Id
+
+#Confirm that the peering state
 Get-AzVirtualNetworkPeering `
   -ResourceGroupName myResourceGroup `
   -VirtualNetworkName myVirtualNetwork2 `
   | Select PeeringState
+
+=> PeeringState is Connected
 
 #Clean Up
 Remove-AzResourceGroup -Name myResourceGroup -Force
