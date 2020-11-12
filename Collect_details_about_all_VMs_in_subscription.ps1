@@ -1,4 +1,4 @@
-﻿Set-Location c:\
+Set-Location c:\
 Clear-Host
 
 Install-Module -Name Az -Force -AllowClobber -Verbose
@@ -7,7 +7,9 @@ Install-Module -Name Az -Force -AllowClobber -Verbose
 Connect-AzAccount
 
 #Select the correct subscription
-Get-AzSubscription -SubscriptionName "MSDN Platforms" | Select-AzSubscription
+Get-AzContext
+Get-AzSubscription
+Get-AzSubscription -SubscriptionName "Your subscription name" | Select-AzSubscription
 
 #Provide the subscription Id where the VMs reside
 $subscriptionId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -15,11 +17,16 @@ $subscriptionId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 #Provide the name of the csv file to be exported
 $reportName = "myReport.csv"
 
+#If you didn't select the subscription in the step above, you can do so now (or just skip it)
 Select-AzSubscription $subscriptionId
+
+#Some variables
 $report = @()
 $vms = Get-AzVM
 $publicIps = Get-AzPublicIpAddress 
 $nics = Get-AzNetworkInterface | ?{ $_.VirtualMachine -NE $null} 
+
+#Now start the loop
 foreach ($nic in $nics) { 
     $info = "" | Select VmName, ResourceGroupName, Region, VirturalNetwork, Subnet, PrivateIpAddress, OsType, PublicIPAddress 
     $vm = $vms | ? -Property Id -eq $nic.VirtualMachine.id 
@@ -37,6 +44,9 @@ foreach ($nic in $nics) {
         $info.PrivateIpAddress = $nic.IpConfigurations.PrivateIpAddress 
         $report+=$info 
     } 
-$report | ft VmName, ResourceGroupName, Region, VirturalNetwork, Subnet, PrivateIpAddress, OsType, PublicIPAddress 
-$report | Export-CSV "$home/$reportName"
 
+#Now let's look at the result    
+$report | ft VmName, ResourceGroupName, Region, VirturalNetwork, Subnet, PrivateIpAddress, OsType, PublicIPAddress
+
+#We save the file in our home folder
+$report | Export-CSV "$home/$reportName"
