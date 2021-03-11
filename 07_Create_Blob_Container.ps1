@@ -19,7 +19,7 @@ New-AzResourceGroup -Name $resourceGroup -Location $location
 $storageAccount = New-AzStorageAccount -ResourceGroupName $resourceGroup `
   -Name "twstorageazure" `
   -SkuName Standard_LRS `
-  -Location $location `
+  -Location $location
 
 $ctx = $storageAccount.Context
 
