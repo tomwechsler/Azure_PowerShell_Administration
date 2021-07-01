@@ -1,4 +1,4 @@
-﻿Set-Location c:\
+Set-Location c:\
 Clear-Host
 
 #We need the cmdlets
@@ -35,5 +35,8 @@ $aadRole = Get-AzureADDirectoryRole | Where-Object {$_.displayName -eq 'Global a
 #Set the role
 Add-AzureADDirectoryRoleMember -ObjectId $aadRole.ObjectId -RefObjectId $aadUser.ObjectId
 
-#Identify the user principal name
-(Get-AzureADUser -Filter "MailNickName eq '$userName'").UserPrincipalName
+#Azure AD Role information
+$CompanyAdminRole = Get-AzureADDirectoryRole | Where-Object {$_.DisplayName -eq "Global administrator"}
+
+#Get members
+Get-AzureADDirectoryRoleMember -ObjectId $CompanyAdminRole.ObjectId
