@@ -37,10 +37,3 @@ Add-AzureADDirectoryRoleMember -ObjectId $aadRole.ObjectId -RefObjectId $aadUser
 
 #Identify the user principal name
 (Get-AzureADUser -Filter "MailNickName eq '$userName'").UserPrincipalName
-
-#Some more variables
-$groupObjectId = (Get-AzureADGroup -Filter "DisplayName eq 'AAD DC Administrators'").ObjectId
-$userObjectId = (Get-AzureADUser -Filter "MailNickName eq 'aadadmin1'").ObjectId
-
-#Add the user to a specific group (optional)
-Add-AzureADGroupMember -ObjectId $groupObjectId -RefObjectId $userObjectId
