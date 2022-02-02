@@ -11,7 +11,7 @@ Get-AzResourceGroup
 Get-AzLocation | select Location
 $location = "westeurope"
 
-# Create a resource group
+# Create a resource group
 $resourceGroup = "myResourceGroup"
 New-AzResourceGroup -Name $resourceGroup -Location $location
 
