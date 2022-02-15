@@ -1,7 +1,10 @@
-﻿Set-Location c:\
+Set-Location c:\
 Clear-Host
 
 Install-Module -Name Az -Force -AllowClobber -Verbose
+
+#If you get an TLS error
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 #Log into Azure
 Connect-AzAccount
