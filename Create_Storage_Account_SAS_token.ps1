@@ -21,6 +21,9 @@ New-Item -ItemType file -Path C:\Temp\test.txt -Force -value $today
 #Create a Resource Group
 New-AzResourceGroup -Name $rgname -Location $location
 
+#Test the storage account name
+Get-AzStorageAccountNameAvailability -Name twstorage75
+
 #Create a Storage Account
 New-AzStorageAccount -Location $location -ResourceGroupName $rgname -Name twstorage75 -SkuName Standard_LRS
 
