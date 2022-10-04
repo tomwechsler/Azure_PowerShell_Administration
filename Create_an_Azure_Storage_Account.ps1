@@ -14,6 +14,9 @@ $id = Get-Random -Minimum 1000 -Maximum 9999
 $storageaccountname = "$($prefix)sa$id"
 $resourceGroup = "$prefix-rg-$id"
 
+#Test the storage account name
+Get-AzStorageAccountNameAvailability -Name $storageaccountname
+
 #Log into Azure
 Connect-AzAccount
 
