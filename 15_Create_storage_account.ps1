@@ -23,6 +23,9 @@ $resourceGroupName = Read-Host -Prompt "Enter the Resource Group name"
 $location = Read-Host -Prompt "Enter the location (i.e. centralus)"
 $storageAccountName = Read-Host -Prompt "Enter the storage account name"
 
+#Test the storage account name
+Get-AzStorageAccountNameAvailability -Name $storageAccountName
+
 # Create the storage account
 $storageAccount = New-AzStorageAccount -ResourceGroupName $resourceGroupName `
   -Name $storageAccountName `
