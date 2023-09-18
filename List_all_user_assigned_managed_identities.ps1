@@ -4,15 +4,23 @@ Install-Module -Name Az -Force -AllowClobber -Verbose
 #Log into Azure
 Connect-AzAccount
 
-#Select the correct subscription
-Get-AzSubscription -SubscriptionName "MSDN Platforms" | Select-AzSubscription
-Get-AzContext
-
-#Get all user assigned managed identities in your subscription
-$UserAssignedIdentities = Get-AzUserAssignedIdentity
-
-#Output the number and names of the user assigned managed identities.
-Write-Host "There are $($UserAssignedIdentities.Count) user assigned managed identities in your subscription:"
+#Output the number and names of user-assigned managed identities.
+Write-Host "There are $($UserAssignedIdentities.Count) user-assigned managed identities in your subscription:"
 foreach ($UserAssignedIdentity in $UserAssignedIdentities) {
     Write-Host "- $($UserAssignedIdentity.Name)"
+}
+
+#Get the permissions for each identity
+foreach ($UserAssignedIdentity in $UserAssignedIdentities) {
+    Write-Host "Permissions for $($UserAssignedIdentity.Name):"
+    
+    # Get the role assignments for the identity.
+    $RoleAssignments = Get-AzRoleAssignment -ObjectId $UserAssignedIdentity.PrincipalId
+    
+    foreach ($RoleAssignment in $RoleAssignments) {
+        # Get the role assigned to the assignment
+        $RoleDefinition = Get-AzRoleDefinition -Id $RoleAssignment.RoleDefinitionId
+        
+        Write-Host "- $($RoleDefinition.Name)"
+    }
 }
