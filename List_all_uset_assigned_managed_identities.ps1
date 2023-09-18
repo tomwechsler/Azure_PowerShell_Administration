@@ -1,3 +1,4 @@
+#Install the module if needed
 Install-Module -Name Az -Force -AllowClobber -Verbose
 
 #Log into Azure
