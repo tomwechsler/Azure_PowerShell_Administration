@@ -1,4 +1,11 @@
+Install-Module -Name Az -Force -AllowClobber -Verbose
 
+#Log into Azure
+Connect-AzAccount
+
+#Select the correct subscription
+Get-AzSubscription -SubscriptionName "MSDN Platforms" | Select-AzSubscription
+Get-AzContext
 
 #Get all user assigned managed identities in your subscription
 $UserAssignedIdentities = Get-AzUserAssignedIdentity
