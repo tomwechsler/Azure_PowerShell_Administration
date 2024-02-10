@@ -8,7 +8,7 @@ Connect-AzAccount
 Get-AzSubscription 
 
 #Select your subscription
-$subscriptionId = "b3e430d7-6706-40c1-a350-a9f9deff9326"
+$subscriptionId = "your subscription id"
 Select-AzSubscription -SubscriptionId $subscriptionId
 
 #Define the period for which you want to retrieve the cost information
