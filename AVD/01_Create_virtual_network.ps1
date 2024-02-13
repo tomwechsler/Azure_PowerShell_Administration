@@ -27,5 +27,14 @@ $subnetConfig0 = New-AzVirtualNetworkSubnetConfig -Name $subnetName0 -AddressPre
 $subnetConfig1 = New-AzVirtualNetworkSubnetConfig -Name $subnetName1 -AddressPrefix 10.10.1.0/26
 $subnetConfig3 = New-AzVirtualNetworkSubnetConfig -Name $subnetName3 -AddressPrefix 10.10.3.0/24
 
-# Create a new virtual network
+#Create a new virtual network
 New-AzVirtualNetwork -Name $vnetName -ResourceGroupName $resourceGroupName -Location $location -AddressPrefix 10.10.0.0/16 -Subnet $subnetConfig0, $subnetConfig1, $subnetConfig3
+
+#Get the virtual network
+$vnet = Get-AzVirtualNetwork -ResourceGroupName $resourceGroupName -Name $vnetName
+
+#Set the DNS server
+$vnet.DhcpOptions.DnsServers = "10.10.3.4"
+
+#Update the virtual network
+Set-AzVirtualNetwork -VirtualNetwork $vnet
