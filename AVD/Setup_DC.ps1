@@ -1,9 +1,10 @@
 #Declare variables
 $domainName = "master.pri"
-$dsrmPassword = ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force
+$dsrmPassword = ConvertTo-SecureString "yourpassword" -AsPlainText -Force
+$NetbiosName = "MASTER"
 
 #Install the AD Domain Services role
-Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
+Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools -IncludeAllSubFeature
 
 #Import the ServerManager module
 Import-Module ServerManager
@@ -14,7 +15,7 @@ Install-ADDSForest `
 -DatabasePath "C:\Windows\NTDS" `
 -DomainMode "WinThreshold" `
 -DomainName $domainName `
--DomainNetbiosName (Get-NetBIOSName $domainName) `
+-DomainNetbiosName $NetbiosName `
 -ForestMode "WinThreshold" `
 -InstallDns:$true `
 -LogPath "C:\Windows\NTDS" `
@@ -22,10 +23,3 @@ Install-ADDSForest `
 -SysvolPath "C:\Windows\SYSVOL" `
 -Force:$true `
 -SafeModeAdministratorPassword $dsrmPassword
-
-#Function to get NetBIOS name
-function Get-NetBIOSName {
-    param($dnsName)
-    $nbName = $dnsName.split(".")[0]
-    return $nbName
-}
