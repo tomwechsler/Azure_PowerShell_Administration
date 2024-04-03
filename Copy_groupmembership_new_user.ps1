@@ -1,6 +1,6 @@
 ﻿#Use Windows PowerShell ISE or Azure Cloud Shell
 
-#Install AzureAD
+#Install AzureAD (The module has been deprecated, but is still working at the moment)
 Install-Module -Name AzureAD -AllowClobber -Verbose -Force
 
 #Parameters
